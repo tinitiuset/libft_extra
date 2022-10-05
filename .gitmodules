@@ -2,3 +2,7 @@
 	path = get_next_line
 	url = git@github.com:tinitiuset/get_next_line.git
 	branch = stable
+[submodule "libft"]
+	path = libft
+	url = git@github.com:tinitiuset/libft.git
+	branch = stable
