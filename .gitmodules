@@ -1,0 +1,4 @@
+[submodule "get_next_line"]
+	path = get_next_line
+	url = git@github.com:tinitiuset/get_next_line.git
+	branch = stable
