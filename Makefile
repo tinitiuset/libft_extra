@@ -11,6 +11,10 @@ define HEADER
 endef
 export HEADER
 
+CC = gcc
+
+FLAGS = -Wall -Werror -Wextra
+
 LIBFT_SRC =	libft/ft_atoi.c			libft/ft_bzero.c \
 			libft/ft_calloc.c		libft/ft_isalnum.c \
 			libft/ft_isalpha.c		libft/ft_isascii.c \
@@ -55,22 +59,25 @@ GNL_OBJS_BONUS = $(GNL_BONUS:%.c=%.o)
 all: $(NAME)
 
 $(NAME): $(LIBFT_OBJS) $(FT_PRINTF_OBJS) $(GNL_OBJS)
-	ar rcs $(NAME) $(LIBFT_OBJS) $(FT_PRINTF_OBJS) $(GNL_OBJS)
+	@ar rcs $(NAME) $(LIBFT_OBJS) $(FT_PRINTF_OBJS) $(GNL_OBJS)
 	@echo "$$HEADER"
 	@echo "Libft + Ft_Printf + GNL Compiled"
 
+%.o: %.c
+	@$(CC) $(FLAGS) -c $< -o $@
+
 clean:
-	rm -f $(LIBFT_OBJS) $(LIBFT_OBJS_BONUS) $(FT_PRINTF_OBJS) $(GNL_OBJS) $(GNL_OBJS_BONUS)
-	@echo "All .o files removed"
+	@rm -f $(LIBFT_OBJS) $(LIBFT_OBJS_BONUS) $(FT_PRINTF_OBJS) $(GNL_OBJS) $(GNL_OBJS_BONUS)
+	@echo "All Libft_Extra .o files removed"
 
 fclean: clean
-	rm -f $(NAME)
-	@echo "Library removed"
+	@rm -f $(NAME)
+	@echo "Libft_Extra removed"
 
 re: fclean $(NAME)
 
 bonus: $(LIBFT_OBJS) $(LIBFT_OBJS_BONUS) $(FT_PRINTF_OBJS) $(GNL_OBJS_BONUS)
-	ar rcs $(NAME) $(LIBFT_OBJS) $(LIBFT_OBJS_BONUS) $(FT_PRINTF_OBJS) $(GNL_OBJS_BONUS)
+	@ar rcs $(NAME) $(LIBFT_OBJS) $(LIBFT_OBJS_BONUS) $(FT_PRINTF_OBJS) $(GNL_OBJS_BONUS)
 	@echo "Libft(Bonus) + Ft_Printf + GNL(Bonus) Compiled"
 
 .PHONY: all clean fclean re bonus
